@@ -1,0 +1,391 @@
+/* =========================================
+   INDEX PAGE — HERO SCROLL VIDEO
+   ========================================= */
+
+/* ---- HERO SCROLL WRAPPER ---- */
+.hero-scroll-wrapper {
+  /* Tall section — extra height gives the scroll room to animate */
+  height: 350vh;
+  position: relative;
+}
+
+/* ---- STICKY VIEWPORT ---- */
+.hero-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ---- BACKGROUND ORBS ---- */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-1 {
+  width: 700px; height: 700px;
+  top: -200px; right: -200px;
+  background: radial-gradient(circle at center, rgba(0,200,232,0.14), transparent 70%);
+  animation: orbFloat1 8s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+  width: 500px; height: 500px;
+  bottom: -150px; left: -100px;
+  background: radial-gradient(circle at center, rgba(139,92,246,0.1), transparent 70%);
+  animation: orbFloat2 10s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloat1 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-40px, 40px) scale(1.05); }
+}
+@keyframes orbFloat2 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(30px, -30px) scale(1.08); }
+}
+
+/* ---- VIDEO FRAME ---- */
+.video-frame {
+  position: absolute;
+  /* Initial: centred box, will grow via JS transform */
+  width: 55vw;
+  max-width: 860px;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(10,22,40,0.20), var(--glow);
+  border: 1px solid var(--border-strong);
+  z-index: 2;
+  transform-origin: center center;
+  will-change: transform, border-radius;
+  transition: box-shadow 0.15s;
+}
+
+.video-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Scan-line overlay */
+.video-scanline {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,0.025) 3px,
+    rgba(0,0,0,0.025) 4px
+  );
+  pointer-events: none;
+  z-index: 3;
+  mix-blend-mode: multiply;
+}
+
+/* Corner brackets */
+.video-corner {
+  position: absolute;
+  width: 22px; height: 22px;
+  border-color: var(--cyan);
+  border-style: solid;
+  z-index: 4;
+  transition: opacity 0.4s;
+}
+.video-corner--tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
+.video-corner--tr { top: 10px; right: 10px; border-width: 2px 2px 0 0; }
+.video-corner--bl { bottom: 10px; left: 10px; border-width: 0 0 2px 2px; }
+.video-corner--br { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
+
+/* Progress bar */
+.video-progress-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.2);
+  z-index: 5;
+  transition: opacity 0.4s;
+}
+.video-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+  transition: width 0.05s linear;
+}
+
+/* Scroll label */
+.video-label {
+  position: absolute;
+  bottom: 14px; right: 16px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.7);
+  z-index: 5;
+  transition: opacity 0.4s;
+}
+
+/* ---- HERO TEXT ---- */
+.hero-text {
+  position: absolute;
+  left: clamp(2rem, 8vw, 8rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  max-width: 480px;
+  will-change: opacity, transform;
+  transition: opacity 0.1s, transform 0.1s;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan-dark);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+.hero-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 1; box-shadow: 0 0 10px var(--cyan); }
+  50%      { opacity: 0.6; box-shadow: 0 0 20px var(--cyan); }
+}
+
+.hero-name {
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  color: var(--navy);
+  margin-bottom: 0.8rem;
+  line-height: 1.1;
+}
+
+.hero-name-accent { color: var(--cyan-dark); }
+
+.hero-sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-bottom: 2rem;
+  max-width: 40ch;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ---- SCROLL HINT ---- */
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  z-index: 10;
+  animation: fadeInUp 1s 1.2s ease both;
+}
+
+.scroll-arrow {
+  width: 22px; height: 22px;
+  border-right: 2px solid var(--cyan);
+  border-bottom: 2px solid var(--cyan);
+  transform: rotate(45deg);
+  animation: bounceDown 1.5s ease-in-out infinite;
+}
+
+@keyframes bounceDown {
+  0%,100% { transform: rotate(45deg) translateY(0); }
+  50%      { transform: rotate(45deg) translateY(5px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ---- STATS SECTION ---- */
+.stats-section {
+  padding: 4rem 0;
+  background: var(--navy);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.stat-item {
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+}
+.stat-item:last-child { border-right: none; }
+
+.stat-number {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-number span {
+  color: var(--cyan);
+  font-size: 0.7em;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ---- SNAPSHOT SECTION ---- */
+.snapshot-section { background: var(--bg-2); }
+
+.snapshot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.snapshot-desc {
+  color: var(--text-muted);
+  font-size: 1.02rem;
+  line-height: 1.75;
+  margin-top: 1.2rem;
+}
+
+.snapshot-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.snapshot-card {
+  padding: 1.6rem 1.8rem;
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+
+.snap-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.snapshot-card h4 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+  color: var(--navy);
+}
+
+.snapshot-card p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ---- ACHIEVEMENT SECTION ---- */
+.achievement-section { background: var(--bg); }
+
+.achievement-banner {
+  padding: 2.8rem 3rem;
+}
+
+.achievement-inner {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.achievement-medals {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.achievement-text { flex: 1; }
+
+.achievement-text h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--navy);
+}
+
+.achievement-text p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .video-frame {
+    width: 80vw;
+  }
+  .hero-text {
+    left: 1.5rem;
+    right: 1.5rem;
+    max-width: none;
+  }
+  .snapshot-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stat-item:nth-child(2) { border-right: none; }
+  .stat-item:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.08); }
+}
+
+@media (max-width: 600px) {
+  .hero-name { font-size: 2.2rem; }
+  .video-frame { width: 92vw; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .achievement-inner { flex-direction: column; text-align: center; }
+  .achievement-medals { flex-direction: row; justify-content: center; }
+}
