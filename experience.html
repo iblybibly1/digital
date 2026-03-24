@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experience — Hassan Masood</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* ---- PAGE HEADER ---- */
+    .page-header {
+      padding-top: calc(var(--nav-h) + 5rem);
+      padding-bottom: 4rem;
+    }
+
+    /* ---- TIMELINE ---- */
+    .timeline-section { background: var(--bg-2); padding-bottom: 6rem; }
+
+    .timeline {
+      position: relative;
+      padding-left: 0;
+    }
+
+    /* Central axis line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--cyan), var(--violet), var(--teal));
+      transform: translateX(-50%);
+      opacity: 0.4;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 1fr 40px 1fr;
+      gap: 0;
+      margin-bottom: 3rem;
+      align-items: start;
+    }
+
+    /* Odd items: content left, empty right */
+    .timeline-item:nth-child(odd) .tl-content  { grid-column: 1; text-align: right; padding-right: 2.5rem; }
+    .timeline-item:nth-child(odd) .tl-dot       { grid-column: 2; }
+    .timeline-item:nth-child(odd) .tl-spacer    { grid-column: 3; }
+
+    /* Even items: empty left, content right */
+    .timeline-item:nth-child(even) .tl-spacer   { grid-column: 1; }
+    .timeline-item:nth-child(even) .tl-dot       { grid-column: 2; }
+    .timeline-item:nth-child(even) .tl-content   { grid-column: 3; text-align: left; padding-left: 2.5rem; }
+
+    .tl-dot {
+      display: flex;
+      justify-content: center;
+      padding-top: 1.4rem;
+    }
+    .tl-dot-inner {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--cyan);
+      box-shadow: 0 0 12px rgba(0,200,232,0.5);
+      flex-shrink: 0;
+    }
+
+    .tl-card {
+      padding: 1.8rem 2rem;
+      position: relative;
+    }
+
+    .tl-period {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.66rem;
+      letter-spacing: 0.15em;
+      color: var(--cyan-dark);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .tl-role {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.92rem;
+      color: var(--navy);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.3rem;
+    }
+
+    .tl-company {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .tl-bullets {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .tl-bullets li {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+
+    .tl-bullets li::before {
+      content: '▸';
+      color: var(--cyan);
+      font-size: 0.75rem;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    /* Right-aligned bullet points */
+    .timeline-item:nth-child(odd) .tl-bullets li {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+    .timeline-item:nth-child(odd) .tl-bullets li::before {
+      content: '◂';
+    }
+
+    /* ---- ACHIEVEMENTS ---- */
+    .achievements-section { background: var(--bg); }
+
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .achievement-card {
+      padding: 2rem 1.8rem;
+      text-align: center;
+    }
+
+    .ach-medal {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .ach-place {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+
+    .ach-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.88rem;
+      color: var(--navy);
+      line-height: 1.4;
+      margin-bottom: 0.4rem;
+    }
+
+    .ach-org {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 768px) {
+      .timeline::before { left: 20px; }
+      .timeline-item {
+        grid-template-columns: 40px 1fr;
+      }
+      .timeline-item:nth-child(odd) .tl-content,
+      .timeline-item:nth-child(even) .tl-content {
+        grid-column: 2;
+        text-align: left;
+        padding-left: 1.5rem;
+        padding-right: 0;
+      }
+      .timeline-item:nth-child(odd) .tl-dot,
+      .timeline-item:nth-child(even) .tl-dot {
+        grid-column: 1;
+      }
+      .tl-spacer { display: none; }
+      .timeline-item:nth-child(odd) .tl-bullets li { flex-direction: row; text-align: left; }
+      .timeline-item:nth-child(odd) .tl-bullets li::before { content: '▸'; }
+      .achievements-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">HM<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="nav-hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="container">
+    <div class="section-eyebrow">Career</div>
+    <h1>Work Experience</h1>
+    <p style="color:var(--text-muted); max-width:55ch; margin-top:1rem; font-size:1.05rem;">
+      Five years of cross-functional experience spanning ESG compliance, sales leadership,
+      strategic consulting, and sustainable supply chain management.
+    </p>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="timeline">
+
+      <!-- 1 -->
+      <div class="timeline-item reveal">
+        <div class="tl-content">
+          <div class="tl-card card">
+            <span class="tl-period">MAR 2025 — DEC 2025</span>
+            <div class="tl-role">Sales Development Rep &amp; Project Lead</div>
+            <div class="tl-company">FinSell Oy (World Vision) · Helsinki, FI</div>
+            <ul class="tl-bullets">
+              <li>Recruited, trained, and managed the outdoor sales team with motivational leadership in a fast-paced environment.</li>
+              <li>Led fundraising campaigns and donor acquisition, achieving targeted growth of the supporter base.</li>
+              <li>Managed CRM and reporting workflows including scheduling through MS Office, Excel, and Google tools.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-spacer"></div>
+      </div>
+
+      <!-- 2 -->
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="tl-spacer"></div>
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-content">
+          <div class="tl-card card">
+            <span class="tl-period">JUN 2024 — OCT 2024</span>
+            <div class="tl-role">ESG &amp; CSRD Compliance Specialist</div>
+            <div class="tl-company">Tammer Brands Oy · Tampere / Vantaa, FI</div>
+            <ul class="tl-bullets">
+              <li>Implemented EU Carbon Border Adjustment Mechanism (CBAM) and ESG/CSRD compliance goals.</li>
+              <li>Coordinated supplier data with customs (Tulli) for CBAM compliance and reported directly to the EU portal.</li>
+              <li>Led internal CBAM knowledge-sharing sessions and trained suppliers on compliance strategies.</li>
+              <li>Managed risk assessment and Product Quality Book (PQB) evaluations under EU import legislation.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="tl-content">
+          <div class="tl-card card">
+            <span class="tl-period">MAY 2023 — DEC 2024</span>
+            <div class="tl-role">Strategy Consultant</div>
+            <div class="tl-company">Tampere Business Case Club · Tampere, FI</div>
+            <ul class="tl-bullets">
+              <li>Advised regional and international organisations including Lufthansa, Sidoste, and TeamViewer on complex business cases.</li>
+              <li>Conducted in-depth market research, competitor benchmarking, and financial analysis.</li>
+              <li>Represented Tampere University at International Business Case Consulting &amp; European Sales Competitions.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-spacer"></div>
+      </div>
+
+      <!-- 4 -->
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="tl-spacer"></div>
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-content">
+          <div class="tl-card card">
+            <span class="tl-period">JUN 2020 — MAR 2021</span>
+            <div class="tl-role">Assistant Manager</div>
+            <div class="tl-company">Environmental Consultancies &amp; Options · Lahore, PK</div>
+            <ul class="tl-bullets">
+              <li>Implemented a streamlined supply chain program in Punjab region connecting 2,400 collection centres.</li>
+              <li>Hired, trained, and managed the full waste collection and disposal team, reducing lead time.</li>
+              <li>Managed regulatory documents and licence renewals for handling hazardous chemicals.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="tl-content">
+          <div class="tl-card card">
+            <span class="tl-period">DEC 2017 — JAN 2020</span>
+            <div class="tl-role">Business Development Manager</div>
+            <div class="tl-company">Vapemall PK · Lahore, PK</div>
+            <ul class="tl-bullets">
+              <li>Scaled the business from an online-only store to a successful brick-and-mortar operation across multiple locations.</li>
+              <li>Managed end-to-end supply chain: invoicing, shipment clearance, inventory control, and delivery logistics.</li>
+              <li>Served as financial advisor and strategic sales coordinator for business growth.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-spacer"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="achievements-section">
+  <div class="container">
+    <div class="section-eyebrow">Recognition</div>
+    <h2 class="section-title">Achievements &amp; Awards</h2>
+
+    <div class="achievements-grid">
+
+      <div class="achievement-card card reveal">
+        <span class="ach-medal">🥉</span>
+        <span class="badge badge-bronze ach-place">3rd Place</span>
+        <div class="ach-title">Huawei Tech Arena Finland 2025</div>
+        <div class="ach-org">Developed UI/UX Interface for Harmony OS · Dec 2025</div>
+      </div>
+
+      <div class="achievement-card card reveal reveal-delay-1">
+        <span class="ach-medal">🥇</span>
+        <span class="badge badge-gold ach-place">1st Place</span>
+        <div class="ach-title">Sales Pitch Competition</div>
+        <div class="ach-org">Platform 6 · Feb 2023</div>
+      </div>
+
+      <div class="achievement-card card reveal reveal-delay-2">
+        <span class="ach-medal">🥇</span>
+        <span class="badge badge-gold ach-place">1st Place</span>
+        <div class="ach-title">Business Startup Competition</div>
+        <div class="ach-org">Tampere University of Applied Sciences · Mar 2022</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">HM<span>.</span></div>
+      <ul class="footer-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="footer-copy">© 2026 M. Hassan Masood</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
