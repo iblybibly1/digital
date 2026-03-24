@@ -1,321 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Contact — Hassan Masood</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    .page-header {
-      padding-top: calc(var(--nav-h) + 5rem);
-      padding-bottom: 3rem;
+    
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--ink:#060D1F;--ink2:#1A2540;--muted:#6B7A99;--bg:#F2F5FF;--bg2:#EAEFFF;--white:#FFFFFF;--cyan:#00D4FF;--cyan2:#00A8CC;--green:#00FFB3;--violet:#7C5CEF;--border:rgba(0,212,255,0.18);--glow:0 0 40px rgba(0,212,255,0.3)}
+    html{scroll-behavior:smooth}
+    body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+    body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+    h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-0.03em;line-height:1.1}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:68px;display:flex;align-items:center;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(242,245,255,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow 0.3s}
+    nav.scrolled{box-shadow:0 4px 30px rgba(6,13,31,0.08)}
+    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--ink);letter-spacing:-0.02em;text-decoration:none}
+    .nav-logo em{color:var(--cyan2);font-style:normal}
+    .nav-links{display:flex;gap:0.2rem;margin-left:auto;list-style:none}
+    .nav-links a{font-size:0.875rem;font-weight:500;color:var(--muted);padding:0.45rem 1rem;border-radius:100px;text-decoration:none;transition:all 0.2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--ink);background:rgba(0,212,255,0.1)}
+    .nav-cta{background:var(--ink)!important;color:var(--cyan)!important;margin-left:1rem;font-weight:600!important}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;margin-left:auto;padding:4px}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px}
+    .eyebrow{display:inline-flex;align-items:center;gap:0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.18em;color:var(--cyan2);text-transform:uppercase;font-weight:500;margin-bottom:1.2rem}
+    .eyebrow::before{content:'';display:block;width:24px;height:2px;background:var(--cyan)}
+    .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.8rem;border-radius:100px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.88rem;cursor:pointer;border:none;text-decoration:none;transition:all 0.25s}
+    .btn-dark{background:var(--ink);color:var(--cyan)}
+    .btn-dark:hover{background:var(--ink2);color:var(--cyan);box-shadow:var(--glow);transform:translateY(-2px)}
+    .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid rgba(0,212,255,0.4)}
+    .btn-ghost:hover{background:rgba(0,212,255,0.08);border-color:var(--cyan);transform:translateY(-2px)}
+    .r{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+    .r.on{opacity:1;transform:none}
+    .r1{transition-delay:0.1s}.r2{transition-delay:0.2s}.r3{transition-delay:0.3s}
+    footer{background:#030812;padding:2.5rem 0}
+    .foot-inner{max-width:1180px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .foot-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--white);text-decoration:none}
+    .foot-logo em{color:var(--cyan);font-style:normal}
+    .foot-links{list-style:none;display:flex;gap:1.5rem}
+    .foot-links a{color:rgba(255,255,255,0.35);font-size:0.83rem;text-decoration:none;transition:color 0.2s}
+    .foot-links a:hover{color:var(--cyan)}
+    .foot-copy{font-size:0.75px;color:rgba(255,255,255,0.25)}
+    @media(max-width:900px){
+      .nav-links{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(242,245,255,0.98);backdrop-filter:blur(20px);flex-direction:column;padding:1.5rem;gap:0.25rem;border-bottom:1px solid var(--border)}
+      .nav-links.open{display:flex}
+      .nav-cta{margin-left:0}
+      .hamburger{display:flex}
     }
 
-    /* ---- CONTACT LAYOUT ---- */
-    .contact-section { background: var(--bg-2); padding-bottom: 7rem; }
+    .pw{max-width:1180px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
+    .page-hero{padding:calc(68px + 5rem) 0 4rem;background:linear-gradient(160deg,var(--bg) 60%,rgba(0,212,255,0.05))}
+    .contact-sec{background:var(--white);padding:6rem 0}
+    .contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:5rem;align-items:start}
 
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 4rem;
-      align-items: start;
-    }
+    /* Contact methods */
+    .cm{display:flex;align-items:center;gap:1.2rem;padding:1.2rem 1.4rem;background:var(--bg);border:1px solid rgba(0,212,255,0.1);border-radius:14px;margin-bottom:1rem;text-decoration:none;color:inherit;transition:all 0.25s}
+    .cm:hover{border-color:rgba(0,212,255,0.3);box-shadow:0 8px 30px rgba(0,212,255,0.1);transform:translateX(4px)}
+    .cm-icon{width:46px;height:46px;border-radius:12px;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+    .cm-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.12em;color:var(--cyan2);text-transform:uppercase;margin-bottom:0.2rem}
+    .cm-val{font-size:0.9rem;color:var(--ink);font-weight:500}
 
-    /* ---- CONTACT DETAILS ---- */
-    .contact-details h2 { margin-bottom: 1rem; }
-    .contact-details > p {
-      color: var(--text-muted);
-      font-size: 1rem;
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
-    }
+    .avail{display:inline-flex;align-items:center;gap:0.6rem;padding:0.6rem 1.2rem;border-radius:100px;background:rgba(0,255,179,0.1);border:1px solid rgba(0,255,179,0.3);margin-top:1.5rem}
+    .avail-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2s ease-in-out infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0.5}}
+    .avail-text{font-family:'JetBrains Mono',monospace;font-size:0.63rem;letter-spacing:0.12em;color:#047857;font-weight:700}
 
-    .contact-method {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      padding: 1.2rem 1.5rem;
-      margin-bottom: 1rem;
-      transition: all 0.25s;
-    }
-    .contact-method:hover { transform: translateX(4px); }
+    .li-card{display:flex;align-items:center;gap:1.2rem;padding:1.4rem;background:var(--ink);border-radius:14px;margin-top:1.5rem;text-decoration:none;transition:all 0.25s}
+    .li-card:hover{background:var(--ink2);box-shadow:var(--glow);transform:translateY(-2px)}
+    .li-logo{width:40px;height:40px;background:#0077B5;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.1rem;flex-shrink:0}
+    .li-text .li-l{font-size:0.72rem;color:rgba(255,255,255,0.45);margin-bottom:0.1rem}
+    .li-text .li-h{font-size:0.9rem;color:var(--white);font-weight:600}
+    .li-arr{margin-left:auto;color:var(--cyan);font-size:1.1rem}
 
-    .contact-method-icon {
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      background: rgba(0,200,232,0.1);
-      border: 1px solid rgba(0,200,232,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
+    /* Form */
+    .form-wrap{background:var(--bg);border:1px solid rgba(0,212,255,0.12);border-radius:20px;padding:2.5rem}
+    .form-title{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--ink);margin-bottom:0.3rem}
+    .form-sub{font-size:0.84rem;color:var(--muted);margin-bottom:2rem}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .fg{margin-bottom:1.1rem}
+    .fg label{display:block;font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;margin-bottom:0.45rem}
+    .fg input,.fg textarea,.fg select{width:100%;padding:0.75rem 1rem;border:1.5px solid rgba(0,212,255,0.15);border-radius:10px;background:var(--white);font-family:'Space Grotesk',sans-serif;font-size:0.9rem;color:var(--ink);outline:none;transition:all 0.2s}
+    .fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,212,255,0.1)}
+    .fg textarea{resize:vertical;min-height:120px}
+    .form-btn{width:100%;padding:1rem;justify-content:center;font-size:0.9rem;border-radius:12px;margin-top:0.5rem}
+    .form-note{text-align:center;font-size:0.75rem;color:var(--muted);margin-top:0.8rem}
+    .form-success{display:none;text-align:center;padding:3rem 2rem}
+    .form-success.show{display:block}
+    .success-ico{font-size:3rem;margin-bottom:1rem;display:block}
 
-    .contact-method-label {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      color: var(--cyan-dark);
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
-    .contact-method-value {
-      font-size: 0.92rem;
-      color: var(--navy);
-      font-weight: 500;
-    }
-    .contact-method-value a {
-      color: var(--navy);
-      text-decoration: none;
-    }
-    .contact-method-value a:hover { color: var(--cyan-dark); }
-
-    /* Status badge */
-    .availability-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.6rem 1.2rem;
-      border-radius: 50px;
-      background: rgba(6,214,160,0.1);
-      border: 1px solid rgba(6,214,160,0.3);
-      margin-top: 2rem;
-    }
-    .avail-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--teal);
-      box-shadow: 0 0 8px var(--teal);
-      animation: pulse 2s infinite;
-    }
-    .avail-text {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      color: #047857;
-      font-weight: 700;
-    }
-
-    /* LinkedIn CTA */
-    .linkedin-cta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.5rem 1.8rem;
-      margin-top: 1.5rem;
-      text-decoration: none;
-      color: var(--navy);
-      background: linear-gradient(135deg, rgba(10,22,40,0.04), rgba(0,200,232,0.06));
-    }
-    .linkedin-cta:hover { color: var(--navy); transform: translateY(-3px); }
-    .linkedin-logo {
-      width: 40px; height: 40px;
-      background: #0077B5;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 800;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-    .linkedin-label { font-size: 0.75rem; color: var(--text-muted); }
-    .linkedin-handle { font-weight: 700; font-size: 0.95rem; color: var(--navy); }
-
-    /* ---- CONTACT FORM ---- */
-    .contact-form-wrap {
-      padding: 2.5rem;
-    }
-
-    .form-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1rem;
-      color: var(--navy);
-      margin-bottom: 0.4rem;
-    }
-    .form-subtitle {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      margin-bottom: 2rem;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.2rem;
-    }
-    .form-group label {
-      display: block;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.14em;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm);
-      background: rgba(255,255,255,0.8);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.92rem;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      border-color: var(--cyan);
-      box-shadow: 0 0 0 3px rgba(0,200,232,0.1);
-      background: var(--white);
-    }
-    .form-group textarea { resize: vertical; min-height: 130px; }
-
-    .form-submit {
-      width: 100%;
-      padding: 1rem;
-      justify-content: center;
-      font-size: 0.92rem;
-      letter-spacing: 0.04em;
-    }
-
-    .form-note {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      text-align: center;
-      margin-top: 1rem;
-    }
-
-    /* Success state */
-    .form-success {
-      display: none;
-      text-align: center;
-      padding: 2rem;
-    }
-    .form-success.show { display: block; }
-    .success-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
-
-    @media (max-width: 900px) {
-      .contact-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-    }
+    @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:2.5rem}.form-row{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-
-<nav class="nav" id="nav">
-  <a href="index.html" class="nav-logo">HM<span>.</span></a>
-  <ul class="nav-links">
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Hassan<em>.</em></a>
+  <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="experience.html">Experience</a></li>
     <li><a href="skills.html">Skills</a></li>
-    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    <li><a href="contact.html" class="nav-cta active">Contact</a></li>
   </ul>
-  <div class="nav-hamburger"><span></span><span></span><span></span></div>
+  <div class="hamburger" id="hbg"><span></span><span></span><span></span></div>
 </nav>
 
-<section class="page-header">
-  <div class="container">
-    <div class="section-eyebrow">Let's Connect</div>
-    <h1>Get In Touch</h1>
-    <p style="color:var(--text-muted); max-width:50ch; margin-top:1rem; font-size:1.05rem;">
-      Whether it's a new opportunity, collaboration, or just a conversation — I'd love to hear from you.
-    </p>
+<div class="page-hero">
+  <div class="pw">
+    <div class="eyebrow r">Let's Connect</div>
+    <h1 style="font-size:clamp(2.5rem,5vw,4rem)" class="r r1">Get In Touch</h1>
+    <p style="color:var(--muted);max-width:50ch;margin-top:1rem;font-size:1rem;line-height:1.7" class="r r2">Whether it's a new opportunity, collaboration, or just a conversation — I'd love to hear from you.</p>
   </div>
-</section>
+</div>
 
-<section class="contact-section">
-  <div class="container">
+<div class="contact-sec">
+  <div class="pw">
     <div class="contact-grid">
+      <div class="r">
+        <h2 style="font-size:1.8rem;margin-bottom:1.5rem">Contact Details</h2>
+        <p style="color:var(--muted);font-size:0.95rem;line-height:1.75;margin-bottom:2rem">Currently based in Uusimaa, Finland and open to roles in sustainability, ESG compliance, business development, and strategic consulting — in Finland and internationally.</p>
 
-      <!-- LEFT — Details -->
-      <div class="reveal">
-        <h2 style="margin-bottom:1rem;">Contact Details</h2>
-        <p>
-          I'm currently based in Uusimaa, Finland and open to roles in sustainability,
-          ESG compliance, business development, and strategic consulting — both in
-          Finland and internationally.
-        </p>
-
-        <div class="contact-method card">
-          <div class="contact-method-icon">📞</div>
-          <div>
-            <div class="contact-method-label">Phone</div>
-            <div class="contact-method-value"><a href="tel:+358403600110">(+358) 40 360-0110</a></div>
-          </div>
+        <a href="tel:+358403600110" class="cm">
+          <div class="cm-icon">📞</div>
+          <div><div class="cm-label">Phone</div><div class="cm-val">(+358) 40 360-0110</div></div>
+        </a>
+        <a href="mailto:m.hassan.masood@hotmail.com" class="cm">
+          <div class="cm-icon">✉️</div>
+          <div><div class="cm-label">Email</div><div class="cm-val">m.hassan.masood@hotmail.com</div></div>
+        </a>
+        <div class="cm">
+          <div class="cm-icon">📍</div>
+          <div><div class="cm-label">Location</div><div class="cm-val">Uusimaa, Finland</div></div>
         </div>
 
-        <div class="contact-method card">
-          <div class="contact-method-icon">✉️</div>
-          <div>
-            <div class="contact-method-label">Email</div>
-            <div class="contact-method-value"><a href="mailto:m.hassan.masood@hotmail.com">m.hassan.masood@hotmail.com</a></div>
-          </div>
-        </div>
-
-        <div class="contact-method card">
-          <div class="contact-method-icon">📍</div>
-          <div>
-            <div class="contact-method-label">Location</div>
-            <div class="contact-method-value">Uusimaa, Finland</div>
-          </div>
-        </div>
-
-        <a href="https://www.linkedin.com/in/hassan-han/" target="_blank" rel="noopener" class="linkedin-cta card">
-          <div class="linkedin-logo">in</div>
-          <div>
-            <div class="linkedin-label">Connect on LinkedIn</div>
-            <div class="linkedin-handle">linkedin.com/in/hassan-han</div>
-          </div>
-          <span style="margin-left:auto; color:var(--text-muted); font-size:1rem;">↗</span>
+        <a href="https://www.linkedin.com/in/hassan-han/" target="_blank" rel="noopener" class="li-card">
+          <div class="li-logo">in</div>
+          <div class="li-text"><div class="li-l">Connect on</div><div class="li-h">linkedin.com/in/hassan-han</div></div>
+          <span class="li-arr">↗</span>
         </a>
 
-        <div class="availability-badge">
+        <div class="avail">
           <div class="avail-dot"></div>
           <span class="avail-text">Available for Opportunities</span>
         </div>
       </div>
 
-      <!-- RIGHT — Form -->
-      <div class="reveal reveal-delay-2">
-        <div class="contact-form-wrap card">
+      <div class="r r2">
+        <div class="form-wrap">
           <div class="form-title">Send a Message</div>
-          <div class="form-subtitle">I typically respond within 24 hours.</div>
-
-          <form id="contactForm">
+          <div class="form-sub">I typically respond within 24 hours.</div>
+          <form id="cf">
             <div class="form-row">
-              <div class="form-group">
-                <label for="fname">First Name</label>
-                <input type="text" id="fname" placeholder="Jane" required />
-              </div>
-              <div class="form-group">
-                <label for="lname">Last Name</label>
-                <input type="text" id="lname" placeholder="Smith" required />
-              </div>
+              <div class="fg"><label>First Name</label><input id="fn" type="text" placeholder="Jane" required/></div>
+              <div class="fg"><label>Last Name</label><input id="ln" type="text" placeholder="Smith" required/></div>
             </div>
-
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" placeholder="jane@company.com" required />
-            </div>
-
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <select id="subject">
+            <div class="fg"><label>Email</label><input id="em" type="email" placeholder="jane@company.com" required/></div>
+            <div class="fg"><label>Subject</label>
+              <select id="sb">
                 <option value="">Select a topic...</option>
                 <option>Job Opportunity</option>
                 <option>Consulting Inquiry</option>
@@ -324,62 +163,49 @@
                 <option>Other</option>
               </select>
             </div>
-
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" placeholder="Tell me about your project or opportunity..." required></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary form-submit">
-              Send Message →
-            </button>
-            <p class="form-note">* This form opens your default email client.</p>
+            <div class="fg"><label>Message</label><textarea id="msg" placeholder="Tell me about your project or opportunity..." required></textarea></div>
+            <button type="submit" class="btn btn-dark form-btn">Send Message →</button>
+            <p class="form-note">* Opens your default email client</p>
           </form>
-
-          <div class="form-success" id="formSuccess">
-            <span class="success-icon">✅</span>
-            <h3 style="margin-bottom:0.5rem;">Message Sent!</h3>
-            <p style="color:var(--text-muted);">Thank you for reaching out. I'll be in touch shortly.</p>
+          <div class="form-success" id="fs">
+            <span class="success-ico">✅</span>
+            <h3 style="margin-bottom:0.5rem">Message Sent!</h3>
+            <p style="color:var(--muted)">Thank you for reaching out. I'll be in touch shortly.</p>
           </div>
-
         </div>
       </div>
-
     </div>
   </div>
-</section>
+</div>
 
 <footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-logo">HM<span>.</span></div>
-      <ul class="footer-links">
-        <li><a href="about.html">About</a></li>
-        <li><a href="experience.html">Experience</a></li>
-        <li><a href="skills.html">Skills</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <div class="footer-copy">© 2026 M. Hassan Masood</div>
-    </div>
+  <div class="foot-inner">
+    <a href="index.html" class="foot-logo">Hassan<em>.</em></a>
+    <ul class="foot-links"><li><a href="about.html">About</a></li><li><a href="experience.html">Experience</a></li><li><a href="skills.html">Skills</a></li><li><a href="contact.html">Contact</a></li></ul>
+    <div class="foot-copy">© 2026 M. Hassan Masood</div>
   </div>
 </footer>
-
-<script src="assets/js/main.js"></script>
 <script>
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const fname   = document.getElementById('fname').value;
-    const lname   = document.getElementById('lname').value;
-    const email   = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value || 'Portfolio Contact';
-    const msg     = document.getElementById('message').value;
 
-    const mailto = `mailto:m.hassan.masood@hotmail.com?subject=${encodeURIComponent(subject + ' - from ' + fname + ' ' + lname)}&body=${encodeURIComponent('From: ' + fname + ' ' + lname + '\nEmail: ' + email + '\n\n' + msg)}`;
-    window.location.href = mailto;
+const nav=document.getElementById('nav');const hbg=document.getElementById('hbg');const nl=document.getElementById('navLinks');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
+if(hbg)hbg.addEventListener('click',()=>nl.classList.toggle('open'));
+const rs=document.querySelectorAll('.r');
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target)}}),{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+rs.forEach(el=>ro.observe(el));
 
-    document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('formSuccess').classList.add('show');
-  });
+document.getElementById('cf').addEventListener('submit',function(e){
+  e.preventDefault();
+  const fn=document.getElementById('fn').value;
+  const ln=document.getElementById('ln').value;
+  const em=document.getElementById('em').value;
+  const sb=document.getElementById('sb').value||'Portfolio Contact';
+  const msg=document.getElementById('msg').value;
+  const ml=`mailto:m.hassan.masood@hotmail.com?subject=${encodeURIComponent(sb+' - from '+fn+' '+ln)}&body=${encodeURIComponent('From: '+fn+' '+ln+'\nEmail: '+em+'\n\n'+msg)}`;
+  window.location.href=ml;
+  document.getElementById('cf').style.display='none';
+  document.getElementById('fs').classList.add('show');
+});
 </script>
 </body>
 </html>

@@ -1,444 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Skills — Hassan Masood</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    .page-header {
-      padding-top: calc(var(--nav-h) + 5rem);
-      padding-bottom: 4rem;
+    
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--ink:#060D1F;--ink2:#1A2540;--muted:#6B7A99;--bg:#F2F5FF;--bg2:#EAEFFF;--white:#FFFFFF;--cyan:#00D4FF;--cyan2:#00A8CC;--green:#00FFB3;--violet:#7C5CEF;--border:rgba(0,212,255,0.18);--glow:0 0 40px rgba(0,212,255,0.3)}
+    html{scroll-behavior:smooth}
+    body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+    body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+    h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-0.03em;line-height:1.1}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:68px;display:flex;align-items:center;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(242,245,255,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow 0.3s}
+    nav.scrolled{box-shadow:0 4px 30px rgba(6,13,31,0.08)}
+    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--ink);letter-spacing:-0.02em;text-decoration:none}
+    .nav-logo em{color:var(--cyan2);font-style:normal}
+    .nav-links{display:flex;gap:0.2rem;margin-left:auto;list-style:none}
+    .nav-links a{font-size:0.875rem;font-weight:500;color:var(--muted);padding:0.45rem 1rem;border-radius:100px;text-decoration:none;transition:all 0.2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--ink);background:rgba(0,212,255,0.1)}
+    .nav-cta{background:var(--ink)!important;color:var(--cyan)!important;margin-left:1rem;font-weight:600!important}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;margin-left:auto;padding:4px}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px}
+    .eyebrow{display:inline-flex;align-items:center;gap:0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.18em;color:var(--cyan2);text-transform:uppercase;font-weight:500;margin-bottom:1.2rem}
+    .eyebrow::before{content:'';display:block;width:24px;height:2px;background:var(--cyan)}
+    .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.8rem;border-radius:100px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.88rem;cursor:pointer;border:none;text-decoration:none;transition:all 0.25s}
+    .btn-dark{background:var(--ink);color:var(--cyan)}
+    .btn-dark:hover{background:var(--ink2);color:var(--cyan);box-shadow:var(--glow);transform:translateY(-2px)}
+    .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid rgba(0,212,255,0.4)}
+    .btn-ghost:hover{background:rgba(0,212,255,0.08);border-color:var(--cyan);transform:translateY(-2px)}
+    .r{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+    .r.on{opacity:1;transform:none}
+    .r1{transition-delay:0.1s}.r2{transition-delay:0.2s}.r3{transition-delay:0.3s}.r4{transition-delay:0.4s}
+    footer{background:#030812;padding:2.5rem 0}
+    .foot-inner{max-width:1180px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .foot-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--white);text-decoration:none}
+    .foot-logo em{color:var(--cyan);font-style:normal}
+    .foot-links{list-style:none;display:flex;gap:1.5rem}
+    .foot-links a{color:rgba(255,255,255,0.35);font-size:0.83rem;text-decoration:none;transition:color 0.2s}
+    .foot-links a:hover{color:var(--cyan)}
+    .foot-copy{font-size:0.75rem;color:rgba(255,255,255,0.25)}
+    @media(max-width:900px){
+      .nav-links{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(242,245,255,0.98);backdrop-filter:blur(20px);flex-direction:column;padding:1.5rem;gap:0.25rem;border-bottom:1px solid var(--border)}
+      .nav-links.open{display:flex}
+      .nav-cta{margin-left:0}
+      .hamburger{display:flex}
     }
 
-    /* ---- SKILL CATEGORIES ---- */
-    .skills-section { background: var(--bg-2); }
+    .pw{max-width:1180px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
+    .page-hero{padding:calc(68px + 5rem) 0 4rem;background:linear-gradient(160deg,var(--bg) 60%,rgba(0,212,255,0.05))}
 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
+    /* SKILL CATEGORIES */
+    .cats-sec{background:var(--white);padding:6rem 0}
+    .cats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+    .cat-card{background:var(--bg);border:1px solid rgba(0,212,255,0.12);border-radius:16px;padding:1.8rem 1.6rem;transition:all 0.3s;position:relative;overflow:hidden;cursor:default}
+    .cat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--green));opacity:0;transition:opacity 0.3s}
+    .cat-card:hover{border-color:rgba(0,212,255,0.3);box-shadow:0 20px 50px rgba(0,212,255,0.12);transform:translateY(-5px)}
+    .cat-card:hover::before{opacity:1}
+    .cc-icon{font-size:2.2rem;display:block;margin-bottom:1rem}
+    .cc-name{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;color:var(--ink);margin-bottom:0.8rem}
+    .cc-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+    .cc-tag{font-size:0.71rem;padding:0.25rem 0.7rem;border-radius:100px;background:rgba(0,212,255,0.08);color:var(--cyan2);border:1px solid rgba(0,212,255,0.15)}
 
-    .skill-category {
-      padding: 2rem 1.8rem;
-    }
+    /* BARS */
+    .bars-sec{background:var(--bg2);padding:6rem 0}
+    .bars-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+    .bars-group h3{font-size:1.15rem;color:var(--ink);margin-bottom:2rem}
+    .bar-item{margin-bottom:1.5rem}
+    .bar-hd{display:flex;justify-content:space-between;margin-bottom:0.5rem}
+    .bar-label{font-size:0.88rem;font-weight:600;color:var(--ink)}
+    .bar-pct{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--cyan2);font-weight:500}
+    .bar-track{height:6px;background:rgba(0,212,255,0.1);border-radius:3px;overflow:hidden}
+    .bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--green));border-radius:3px;box-shadow:0 0 8px rgba(0,212,255,0.35);transition:width 1.4s cubic-bezier(0.4,0,0.2,1)}
 
-    .skill-cat-header {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 1.5rem;
-    }
-    .skill-cat-icon {
-      font-size: 1.5rem;
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      background: rgba(0,200,232,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .skill-cat-name {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--navy);
-      letter-spacing: 0.05em;
-      line-height: 1.3;
-    }
+    /* TOOLS */
+    .tools-sec{background:var(--white);padding:6rem 0}
+    .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem}
+    .tool-card{background:var(--bg);border:1px solid rgba(0,212,255,0.1);border-radius:14px;padding:1.6rem 1rem;text-align:center;transition:all 0.3s}
+    .tool-card:hover{border-color:rgba(0,212,255,0.3);box-shadow:0 12px 40px rgba(0,212,255,0.12);transform:translateY(-4px)}
+    .tc-icon{font-size:2rem;display:block;margin-bottom:0.7rem}
+    .tc-name{font-family:'Syne',sans-serif;font-weight:700;font-size:0.75rem;letter-spacing:0.04em;color:var(--ink);margin-bottom:0.2rem}
+    .tc-type{font-size:0.7rem;color:var(--muted)}
+    
+    .cert-badge{display:inline-flex;align-items:center;gap:0.4rem;padding:0.2rem 0.6rem;border-radius:100px;background:rgba(0,255,179,0.1);border:1px solid rgba(0,255,179,0.25);font-size:0.62rem;color:#047857;font-weight:600;margin-top:0.3rem}
 
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    /* ---- PROFICIENCY BARS ---- */
-    .bars-section { background: var(--bg); }
-
-    .bars-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-
-    .bar-group h3 {
-      margin-bottom: 1.8rem;
-      font-size: 1.1rem;
-    }
-
-    .skill-bar-item {
-      margin-bottom: 1.4rem;
-    }
-    .skill-bar-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.5rem;
-    }
-    .skill-bar-label {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--navy);
-    }
-    .skill-bar-pct {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.68rem;
-      color: var(--cyan-dark);
-      font-weight: 600;
-    }
-    .skill-bar-track {
-      height: 6px;
-      background: rgba(0,200,232,0.12);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .skill-bar-fill {
-      height: 100%;
-      border-radius: 3px;
-      background: linear-gradient(90deg, var(--cyan), var(--teal));
-      box-shadow: 0 0 8px rgba(0,200,232,0.4);
-      width: 0;
-      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* ---- TOOLS ---- */
-    .tools-section { background: var(--bg-2); }
-
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 1rem;
-    }
-
-    .tool-item {
-      padding: 1.4rem 1.2rem;
-      text-align: center;
-      cursor: default;
-    }
-    .tool-icon { font-size: 2rem; display: block; margin-bottom: 0.6rem; }
-    .tool-name {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
-      color: var(--navy);
-      font-weight: 600;
-    }
-    .tool-type {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      margin-top: 0.2rem;
-    }
-
-    @media (max-width: 900px) {
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      .bars-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 580px) {
-      .skills-grid { grid-template-columns: 1fr; }
-      .tools-grid { grid-template-columns: repeat(2, 1fr); }
-    }
+    @media(max-width:900px){.cats-grid{grid-template-columns:1fr 1fr}.bars-grid{grid-template-columns:1fr}}
+    @media(max-width:580px){.cats-grid{grid-template-columns:1fr}.tools-grid{grid-template-columns:repeat(2,1fr)}}
   </style>
 </head>
 <body>
-
-<nav class="nav" id="nav">
-  <a href="index.html" class="nav-logo">HM<span>.</span></a>
-  <ul class="nav-links">
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Hassan<em>.</em></a>
+  <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="experience.html">Experience</a></li>
-    <li><a href="skills.html">Skills</a></li>
+    <li><a href="skills.html" class="active">Skills</a></li>
     <li><a href="contact.html" class="nav-cta">Contact</a></li>
   </ul>
-  <div class="nav-hamburger"><span></span><span></span><span></span></div>
+  <div class="hamburger" id="hbg"><span></span><span></span><span></span></div>
 </nav>
 
-<section class="page-header">
-  <div class="container">
-    <div class="section-eyebrow">Capabilities</div>
-    <h1>Skills &amp; Expertise</h1>
-    <p style="color:var(--text-muted); max-width:55ch; margin-top:1rem; font-size:1.05rem;">
-      A multidisciplinary skill set spanning sustainability compliance, business strategy,
-      data analytics, design, and programming.
-    </p>
+<div class="page-hero">
+  <div class="pw">
+    <div class="eyebrow r">Capabilities</div>
+    <h1 style="font-size:clamp(2.5rem,5vw,4rem)" class="r r1">Skills &amp; Expertise</h1>
+    <p style="color:var(--muted);max-width:55ch;margin-top:1rem;font-size:1rem;line-height:1.7" class="r r2">A multidisciplinary skill set spanning sustainability compliance, business strategy, data analytics, design, and programming.</p>
   </div>
-</section>
+</div>
 
-<!-- SKILL CATEGORIES -->
-<section class="skills-section">
-  <div class="container">
-    <div class="section-eyebrow">Categories</div>
-    <h2 class="section-title">Areas of Expertise</h2>
-
-    <div class="skills-grid">
-
-      <div class="skill-category card reveal">
-        <div class="skill-cat-header">
-          <div class="skill-cat-icon">🌿</div>
-          <div class="skill-cat-name">ESG &amp; Compliance</div>
-        </div>
-        <div class="skill-tags">
-          <span class="tag">ESG Reporting</span>
-          <span class="tag">CSRD</span>
-          <span class="tag">CBAM</span>
-          <span class="tag">EU Regulations</span>
-          <span class="tag">Risk Assessment</span>
-          <span class="tag">Supplier Management</span>
-          <span class="tag">Tulli (Customs)</span>
-        </div>
-      </div>
-
-      <div class="skill-category card reveal reveal-delay-1">
-        <div class="skill-cat-header">
-          <div class="skill-cat-icon">📈</div>
-          <div class="skill-cat-name">Sales &amp; Business Dev</div>
-        </div>
-        <div class="skill-tags">
-          <span class="tag">HubSpot</span>
-          <span class="tag">Salesforce</span>
-          <span class="tag">CRM Management</span>
-          <span class="tag">Fundraising</span>
-          <span class="tag">Team Leadership</span>
-          <span class="tag">Market Analysis</span>
-          <span class="tag">Sales Strategy</span>
-        </div>
-      </div>
-
-      <div class="skill-category card reveal reveal-delay-2">
-        <div class="skill-cat-header">
-          <div class="skill-cat-icon">📊</div>
-          <div class="skill-cat-name">Data &amp; Analytics</div>
-        </div>
-        <div class="skill-tags">
-          <span class="tag">Tableau</span>
-          <span class="tag">Power BI</span>
-          <span class="tag">Data Analysis</span>
-          <span class="tag">Financial Modelling</span>
-          <span class="tag">Market Research</span>
-          <span class="tag">Competitor Analysis</span>
-        </div>
-      </div>
-
-      <div class="skill-category card reveal reveal-delay-1">
-        <div class="skill-cat-header">
-          <div class="skill-cat-icon">🎨</div>
-          <div class="skill-cat-name">Design &amp; UX</div>
-        </div>
-        <div class="skill-tags">
-          <span class="tag">UI/UX Design</span>
-          <span class="tag">Figma</span>
-          <span class="tag">Harmony OS</span>
-          <span class="tag">Prototyping</span>
-          <span class="tag">User Research</span>
-        </div>
-      </div>
-
-      <div class="skill-category card reveal reveal-delay-2">
-        <div class="skill-cat-header">
-          <div class="skill-cat-icon">💻</div>
-          <div class="skill-cat-name">Programming &amp; Tech</div>
-        </div>
-        <div class="skill-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Java</span>
-          <span class="tag">C++</span>
-          <span class="tag">Generative AI</span>
-          <span class="tag">Oracle AI</span>
-          <span class="tag">Prompt Engineering</span>
-        </div>
-      </div>
-
-      <div class="skill-category card reveal reveal-delay-3">
-        <div class="skill-cat-header">
-          <div class="skill-cat-icon">🗂️</div>
-          <div class="skill-cat-name">Project Management</div>
-        </div>
-        <div class="skill-tags">
-          <span class="tag">MS Office 365</span>
-          <span class="tag">Google Workspace</span>
-          <span class="tag">Scheduling</span>
-          <span class="tag">HR Management</span>
-          <span class="tag">Cross-functional Teams</span>
-          <span class="tag">Reporting</span>
-        </div>
-      </div>
-
+<div class="cats-sec">
+  <div class="pw">
+    <div class="eyebrow r">Categories</div>
+    <h2 style="font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:2.5rem" class="r r1">Areas of Expertise</h2>
+    <div class="cats-grid">
+      <div class="cat-card r"><span class="cc-icon">🌿</span><div class="cc-name">ESG &amp; Compliance</div><div class="cc-tags"><span class="cc-tag">CSRD</span><span class="cc-tag">CBAM</span><span class="cc-tag">EU Regulations</span><span class="cc-tag">Risk Assessment</span><span class="cc-tag">Tulli</span><span class="cc-tag">Supplier Mgmt</span></div></div>
+      <div class="cat-card r r1"><span class="cc-icon">📊</span><div class="cc-name">Data &amp; Analytics</div><div class="cc-tags"><span class="cc-tag">Tableau ✓</span><span class="cc-tag">Power BI ✓</span><span class="cc-tag">Financial Modelling</span><span class="cc-tag">Market Research</span></div></div>
+      <div class="cat-card r r2"><span class="cc-icon">🤖</span><div class="cc-name">AI &amp; Technology</div><div class="cc-tags"><span class="cc-tag">Oracle AI ✓</span><span class="cc-tag">Gen AI</span><span class="cc-tag">Prompt Engineering</span><span class="cc-tag">Python</span><span class="cc-tag">Java</span><span class="cc-tag">C++</span></div></div>
+      <div class="cat-card r r1"><span class="cc-icon">📈</span><div class="cc-name">Sales &amp; CRM</div><div class="cc-tags"><span class="cc-tag">HubSpot</span><span class="cc-tag">Salesforce</span><span class="cc-tag">Fundraising</span><span class="cc-tag">Team Leadership</span><span class="cc-tag">Donor Acquisition</span></div></div>
+      <div class="cat-card r r2"><span class="cc-icon">🎨</span><div class="cc-name">Design &amp; UX</div><div class="cc-tags"><span class="cc-tag">UI/UX Design</span><span class="cc-tag">Figma</span><span class="cc-tag">Harmony OS</span><span class="cc-tag">Prototyping</span></div></div>
+      <div class="cat-card r r3"><span class="cc-icon">🗂️</span><div class="cc-name">Project Management</div><div class="cc-tags"><span class="cc-tag">MS Office 365</span><span class="cc-tag">Google Workspace</span><span class="cc-tag">HR Management</span><span class="cc-tag">Scheduling</span></div></div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- PROFICIENCY BARS -->
-<section class="bars-section">
-  <div class="container">
-    <div class="section-eyebrow">Proficiency</div>
-    <h2 class="section-title">Skill Levels</h2>
-
+<div class="bars-sec">
+  <div class="pw">
+    <div class="eyebrow r">Proficiency</div>
+    <h2 style="font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:3rem" class="r r1">Skill Levels</h2>
     <div class="bars-grid">
-      <div class="bar-group reveal">
+      <div class="bars-group r">
         <h3>Business &amp; Strategy</h3>
-
-        <div class="skill-bar-item">
-          <div class="skill-bar-header">
-            <span class="skill-bar-label">ESG / CSRD Compliance</span>
-            <span class="skill-bar-pct">92%</span>
-          </div>
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill" data-width="92"></div>
-          </div>
-        </div>
-
-        <div class="skill-bar-item">
-          <div class="skill-bar-header">
-            <span class="skill-bar-label">Sales &amp; Business Development</span>
-            <span class="skill-bar-pct">88%</span>
-          </div>
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill" data-width="88"></div>
-          </div>
-        </div>
-
-        <div class="skill-bar-item">
-          <div class="skill-bar-header">
-            <span class="skill-bar-label">Strategic Consulting</span>
-            <span class="skill-bar-pct">85%</span>
-          </div>
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill" data-width="85"></div>
-          </div>
-        </div>
-
-        <div class="skill-bar-item">
-          <div class="skill-bar-header">
-            <span class="skill-bar-label">Project Management</span>
-            <span class="skill-bar-pct">87%</span>
-          </div>
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill" data-width="87"></div>
-          </div>
-        </div>
-
-        <div class="skill-bar-item">
-          <div class="skill-bar-header">
-            <span class="skill-bar-label">Market &amp; Financial Analysis</span>
-            <span class="skill-bar-pct">82%</span>
-          </div>
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill" data-width="82"></div>
-          </div>
-        </div>
+        <div class="bar-item"><div class="bar-hd"><span class="bar-label">ESG / CSRD Compliance</span><span class="bar-pct">92%</span></div><div class="bar-track"><div class="bar-fill" data-w="92"></div></div></div>
+        <div class="bar-item"><div class="bar-hd"><span class="bar-label">Sales &amp; Business Dev</span><span class="bar-pct">88%</span></div><div class="bar-track"><div class="bar-fill" data-w="88"></div></div></div>
+        <div class="bar-item"><div class="bar-hd"><span class="bar-label">Strategic Consulting</span><span class="bar-pct">85%</span></div><div class="bar-track"><div class="bar-fill" data-w="85"></div></div></div>
+        <div class="bar-item"><div class="bar-hd"><span class="bar-label">Project Management</span><span class="bar-pct">87%</span></div><div class="bar-track"><div class="bar-fill" data-w="87"></div></div></div>
+        <div class="bar-item"><div class="bar-hd"><span class="bar-label">Market &amp; Financial Analysis</span><span class="bar-pct">82%</span></div><div class="bar-track"><div class="bar-fill" data-w="82"></div></div></div>
       </div>
-
-      <div class="bar-group reveal reveal-delay-2">
+      <div class="bars-group r r2">
         <h3>Technology &amp; Tools</h3>
-
-        <div class="skill-bar-item">
-          <div class="skill-bar-header">
-            <span class="skill-bar-label">Tableau / Power BI</span>
-            <span class="skill-bar-pct">84%</span>
-          </div>
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill" data-width="84"></div>
-          </div>
-        </div>
-
-        <div class="skill-bar-item">
-          <div class="skill-bar-header">
-            <span class="skill-bar-label">HubSpot / Salesforce (CRM)</span>
-            <span class="skill-bar-pct">82%</span>
-          </div>
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill" data-width="82"></div>
-          </div>
-        </div>
-
-        <div class="skill-bar-item">
-          <div class="skill-bar-header">
-            <span class="skill-bar-label">UI/UX Design</span>
-            <span class="skill-bar-pct">78%</span>
-          </div>
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill" data-width="78"></div>
-          </div>
-        </div>
-
-        <div class="skill-bar-item">
-          <div class="skill-bar-header">
-            <span class="skill-bar-label">Generative AI &amp; Prompting</span>
-            <span class="skill-bar-pct">86%</span>
-          </div>
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill" data-width="86"></div>
-          </div>
-        </div>
-
-        <div class="skill-bar-item">
-          <div class="skill-bar-header">
-            <span class="skill-bar-label">Python / Java / C++</span>
-            <span class="skill-bar-pct">72%</span>
-          </div>
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill" data-width="72"></div>
-          </div>
-        </div>
+        <div class="bar-item"><div class="bar-hd"><span class="bar-label">Tableau / Power BI</span><span class="bar-pct">84%</span></div><div class="bar-track"><div class="bar-fill" data-w="84"></div></div></div>
+        <div class="bar-item"><div class="bar-hd"><span class="bar-label">HubSpot / Salesforce CRM</span><span class="bar-pct">82%</span></div><div class="bar-track"><div class="bar-fill" data-w="82"></div></div></div>
+        <div class="bar-item"><div class="bar-hd"><span class="bar-label">UI/UX Design</span><span class="bar-pct">78%</span></div><div class="bar-track"><div class="bar-fill" data-w="78"></div></div></div>
+        <div class="bar-item"><div class="bar-hd"><span class="bar-label">Generative AI &amp; Prompting</span><span class="bar-pct">86%</span></div><div class="bar-track"><div class="bar-fill" data-w="86"></div></div></div>
+        <div class="bar-item"><div class="bar-hd"><span class="bar-label">Python / Java / C++</span><span class="bar-pct">72%</span></div><div class="bar-track"><div class="bar-fill" data-w="72"></div></div></div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- TOOLS -->
-<section class="tools-section">
-  <div class="container">
-    <div class="section-eyebrow">Toolbox</div>
-    <h2 class="section-title">Tools &amp; Platforms</h2>
-
+<div class="tools-sec">
+  <div class="pw">
+    <div class="eyebrow r">Toolbox</div>
+    <h2 style="font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:2.5rem" class="r r1">Tools &amp; Platforms</h2>
     <div class="tools-grid">
-      <div class="tool-item card reveal"><span class="tool-icon">📊</span><div class="tool-name">TABLEAU</div><div class="tool-type">Data Viz · Certified</div></div>
-      <div class="tool-item card reveal reveal-delay-1"><span class="tool-icon">📉</span><div class="tool-name">POWER BI</div><div class="tool-type">Business Intelligence · Certified</div></div>
-      <div class="tool-item card reveal reveal-delay-2"><span class="tool-icon">🔶</span><div class="tool-name">HUBSPOT</div><div class="tool-type">CRM &amp; Sales</div></div>
-      <div class="tool-item card reveal reveal-delay-3"><span class="tool-icon">☁️</span><div class="tool-name">SALESFORCE</div><div class="tool-type">CRM Platform</div></div>
-      <div class="tool-item card reveal"><span class="tool-icon">🐍</span><div class="tool-name">PYTHON</div><div class="tool-type">Programming</div></div>
-      <div class="tool-item card reveal reveal-delay-1"><span class="tool-icon">☕</span><div class="tool-name">JAVA</div><div class="tool-type">Programming</div></div>
-      <div class="tool-item card reveal reveal-delay-2"><span class="tool-icon">🎨</span><div class="tool-name">FIGMA</div><div class="tool-type">UI/UX Design</div></div>
-      <div class="tool-item card reveal reveal-delay-3"><span class="tool-icon">🤖</span><div class="tool-name">ORACLE AI</div><div class="tool-type">AI · Certified</div></div>
-      <div class="tool-item card reveal"><span class="tool-icon">🌐</span><div class="tool-name">EU PORTAL</div><div class="tool-type">CBAM Reporting</div></div>
-      <div class="tool-item card reveal reveal-delay-1"><span class="tool-icon">📋</span><div class="tool-name">MS OFFICE 365</div><div class="tool-type">Productivity</div></div>
-      <div class="tool-item card reveal reveal-delay-2"><span class="tool-icon">📁</span><div class="tool-name">GOOGLE WORKSPACE</div><div class="tool-type">Collaboration</div></div>
-      <div class="tool-item card reveal reveal-delay-3"><span class="tool-icon">⚙️</span><div class="tool-name">C++</div><div class="tool-type">Programming</div></div>
+      <div class="tool-card r"><span class="tc-icon">📊</span><div class="tc-name">TABLEAU</div><div class="tc-type">Data Viz</div><div class="cert-badge">✓ Certified</div></div>
+      <div class="tool-card r r1"><span class="tc-icon">📉</span><div class="tc-name">POWER BI</div><div class="tc-type">Business Intelligence</div><div class="cert-badge">✓ Certified</div></div>
+      <div class="tool-card r r2"><span class="tc-icon">🔶</span><div class="tc-name">HUBSPOT</div><div class="tc-type">CRM &amp; Sales</div></div>
+      <div class="tool-card r r3"><span class="tc-icon">☁️</span><div class="tc-name">SALESFORCE</div><div class="tc-type">CRM Platform</div></div>
+      <div class="tool-card r"><span class="tc-icon">🤖</span><div class="tc-name">ORACLE AI</div><div class="tc-type">AI Foundations</div><div class="cert-badge">✓ Certified</div></div>
+      <div class="tool-card r r1"><span class="tc-icon">🐍</span><div class="tc-name">PYTHON</div><div class="tc-type">Programming</div></div>
+      <div class="tool-card r r2"><span class="tc-icon">☕</span><div class="tc-name">JAVA</div><div class="tc-type">Programming</div></div>
+      <div class="tool-card r r3"><span class="tc-icon">⚙️</span><div class="tc-name">C++</div><div class="tc-type">Programming</div></div>
+      <div class="tool-card r"><span class="tc-icon">🎨</span><div class="tc-name">FIGMA</div><div class="tc-type">UI/UX Design</div></div>
+      <div class="tool-card r r1"><span class="tc-icon">🌐</span><div class="tc-name">EU PORTAL</div><div class="tc-type">CBAM Reporting</div></div>
+      <div class="tool-card r r2"><span class="tc-icon">📋</span><div class="tc-name">MS OFFICE 365</div><div class="tc-type">Productivity</div></div>
+      <div class="tool-card r r3"><span class="tc-icon">📁</span><div class="tc-name">GOOGLE WS</div><div class="tc-type">Collaboration</div></div>
     </div>
   </div>
-</section>
+</div>
 
 <footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-logo">HM<span>.</span></div>
-      <ul class="footer-links">
-        <li><a href="about.html">About</a></li>
-        <li><a href="experience.html">Experience</a></li>
-        <li><a href="skills.html">Skills</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <div class="footer-copy">© 2026 M. Hassan Masood</div>
-    </div>
+  <div class="foot-inner">
+    <a href="index.html" class="foot-logo">Hassan<em>.</em></a>
+    <ul class="foot-links"><li><a href="about.html">About</a></li><li><a href="experience.html">Experience</a></li><li><a href="skills.html">Skills</a></li><li><a href="contact.html">Contact</a></li></ul>
+    <div class="foot-copy">© 2026 M. Hassan Masood</div>
   </div>
 </footer>
-
-<script src="assets/js/main.js"></script>
 <script>
-  // Animate skill bars on scroll
-  const bars = document.querySelectorAll('.skill-bar-fill');
-  const barObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const w = e.target.dataset.width;
-        e.target.style.width = w + '%';
-        barObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  bars.forEach(b => barObs.observe(b));
+
+const nav=document.getElementById('nav');const hbg=document.getElementById('hbg');const nl=document.getElementById('navLinks');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
+if(hbg)hbg.addEventListener('click',()=>nl.classList.toggle('open'));
+const rs=document.querySelectorAll('.r');
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target)}}),{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+rs.forEach(el=>ro.observe(el));
+
+// Animate bars on scroll
+const bars=document.querySelectorAll('.bar-fill');
+const bo=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.dataset.w+'%';bo.unobserve(e.target)}}),{threshold:0.3});
+bars.forEach(b=>bo.observe(b));
 </script>
 </body>
 </html>

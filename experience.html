@@ -1,370 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Experience — Hassan Masood</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    /* ---- PAGE HEADER ---- */
-    .page-header {
-      padding-top: calc(var(--nav-h) + 5rem);
-      padding-bottom: 4rem;
+    
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--ink:#060D1F;--ink2:#1A2540;--muted:#6B7A99;--bg:#F2F5FF;--bg2:#EAEFFF;--white:#FFFFFF;--cyan:#00D4FF;--cyan2:#00A8CC;--green:#00FFB3;--violet:#7C5CEF;--border:rgba(0,212,255,0.18);--glow:0 0 40px rgba(0,212,255,0.3)}
+    html{scroll-behavior:smooth}
+    body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+    body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+    h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-0.03em;line-height:1.1}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:68px;display:flex;align-items:center;padding:0 clamp(1.5rem,5vw,4rem);background:rgba(242,245,255,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow 0.3s}
+    nav.scrolled{box-shadow:0 4px 30px rgba(6,13,31,0.08)}
+    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--ink);letter-spacing:-0.02em;text-decoration:none}
+    .nav-logo em{color:var(--cyan2);font-style:normal}
+    .nav-links{display:flex;gap:0.2rem;margin-left:auto;list-style:none}
+    .nav-links a{font-size:0.875rem;font-weight:500;color:var(--muted);padding:0.45rem 1rem;border-radius:100px;text-decoration:none;transition:all 0.2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--ink);background:rgba(0,212,255,0.1)}
+    .nav-cta{background:var(--ink)!important;color:var(--cyan)!important;margin-left:1rem;font-weight:600!important}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;margin-left:auto;padding:4px}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px}
+    .eyebrow{display:inline-flex;align-items:center;gap:0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.18em;color:var(--cyan2);text-transform:uppercase;font-weight:500;margin-bottom:1.2rem}
+    .eyebrow::before{content:'';display:block;width:24px;height:2px;background:var(--cyan)}
+    .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.8rem;border-radius:100px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.88rem;cursor:pointer;border:none;text-decoration:none;transition:all 0.25s}
+    .btn-dark{background:var(--ink);color:var(--cyan)}
+    .btn-dark:hover{background:var(--ink2);color:var(--cyan);box-shadow:var(--glow);transform:translateY(-2px)}
+    .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid rgba(0,212,255,0.4)}
+    .btn-ghost:hover{background:rgba(0,212,255,0.08);border-color:var(--cyan);transform:translateY(-2px)}
+    .r{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+    .r.on{opacity:1;transform:none}
+    .r1{transition-delay:0.1s}.r2{transition-delay:0.2s}.r3{transition-delay:0.3s}.r4{transition-delay:0.4s}
+    footer{background:#030812;padding:2.5rem 0}
+    .foot-inner{max-width:1180px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .foot-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--white);text-decoration:none}
+    .foot-logo em{color:var(--cyan);font-style:normal}
+    .foot-links{list-style:none;display:flex;gap:1.5rem}
+    .foot-links a{color:rgba(255,255,255,0.35);font-size:0.83rem;text-decoration:none;transition:color 0.2s}
+    .foot-links a:hover{color:var(--cyan)}
+    .foot-copy{font-size:0.75rem;color:rgba(255,255,255,0.25)}
+    @media(max-width:900px){
+      .nav-links{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(242,245,255,0.98);backdrop-filter:blur(20px);flex-direction:column;padding:1.5rem;gap:0.25rem;border-bottom:1px solid var(--border)}
+      .nav-links.open{display:flex}
+      .nav-cta{margin-left:0}
+      .hamburger{display:flex}
     }
 
-    /* ---- TIMELINE ---- */
-    .timeline-section { background: var(--bg-2); padding-bottom: 6rem; }
+    .page-hero{padding:calc(68px + 5rem) 0 4rem;background:linear-gradient(160deg,var(--bg) 60%,rgba(0,212,255,0.05))}
+    .pw{max-width:1180px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
+    .ph{font-size:clamp(2.5rem,5vw,4rem);color:var(--ink);margin-bottom:1rem}
+    .ph-sub{font-size:1rem;color:var(--muted);max-width:55ch;line-height:1.7}
 
-    .timeline {
-      position: relative;
-      padding-left: 0;
-    }
+    /* TIMELINE */
+    .tl-sec{background:var(--white);padding:6rem 0}
+    .timeline{position:relative;max-width:900px;margin:0 auto}
+    .timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--cyan),var(--violet),var(--green));opacity:0.3;transform:translateX(-50%)}
+    .tl-item{display:grid;grid-template-columns:1fr 60px 1fr;margin-bottom:3rem;align-items:start}
+    .tl-left,.tl-right{padding:0 2rem}
+    .tl-center{display:flex;justify-content:center;padding-top:1.2rem}
+    .tl-dot{width:14px;height:14px;border-radius:50%;background:var(--white);border:2.5px solid var(--cyan);box-shadow:0 0 14px rgba(0,212,255,0.5)}
+    .tl-card{background:var(--bg);border:1px solid rgba(0,212,255,0.12);border-radius:16px;padding:1.8rem;transition:all 0.3s}
+    .tl-card:hover{border-color:rgba(0,212,255,0.3);box-shadow:0 16px 50px rgba(0,212,255,0.12);transform:translateY(-3px)}
+    .tl-odd .tl-right{display:none}
+    .tl-even .tl-left{display:none}
+    .tc-per{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.14em;color:var(--cyan2);margin-bottom:0.5rem}
+    .tc-role{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--ink);margin-bottom:0.25rem}
+    .tc-company{font-size:0.83rem;color:var(--muted);margin-bottom:1rem}
+    .tc-pts{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+    .tc-pts li{font-size:0.84rem;color:var(--muted);line-height:1.6;display:flex;gap:0.6rem;align-items:flex-start}
+    .tc-pts li::before{content:'▸';color:var(--cyan);font-size:0.72rem;margin-top:0.25rem;flex-shrink:0}
 
-    /* Central axis line */
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 0; bottom: 0;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--cyan), var(--violet), var(--teal));
-      transform: translateX(-50%);
-      opacity: 0.4;
-    }
+    /* ACHIEVEMENTS */
+    .ach-sec{background:var(--bg2);padding:6rem 0}
+    .ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .ach-card{background:var(--white);border:1px solid rgba(0,212,255,0.12);border-radius:16px;padding:2.5rem 2rem;text-align:center;transition:all 0.3s;position:relative;overflow:hidden}
+    .ach-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--green));opacity:0;transition:opacity 0.3s}
+    .ach-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,212,255,0.15);border-color:rgba(0,212,255,0.3)}
+    .ach-card:hover::after{opacity:1}
+    .ach-emoji{font-size:3rem;display:block;margin-bottom:1rem}
+    .ach-place{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.14em;padding:0.3rem 0.9rem;border-radius:100px;margin-bottom:0.8rem}
+    .gold{background:rgba(251,191,36,0.15);color:#92400E;border:1px solid rgba(251,191,36,0.3)}
+    .bronze{background:rgba(180,83,9,0.1);color:#78350F;border:1px solid rgba(180,83,9,0.2)}
+    .ach-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;color:var(--ink);margin-bottom:0.4rem;line-height:1.3}
+    .ach-org{font-size:0.78rem;color:var(--muted)}
 
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 1fr 40px 1fr;
-      gap: 0;
-      margin-bottom: 3rem;
-      align-items: start;
-    }
-
-    /* Odd items: content left, empty right */
-    .timeline-item:nth-child(odd) .tl-content  { grid-column: 1; text-align: right; padding-right: 2.5rem; }
-    .timeline-item:nth-child(odd) .tl-dot       { grid-column: 2; }
-    .timeline-item:nth-child(odd) .tl-spacer    { grid-column: 3; }
-
-    /* Even items: empty left, content right */
-    .timeline-item:nth-child(even) .tl-spacer   { grid-column: 1; }
-    .timeline-item:nth-child(even) .tl-dot       { grid-column: 2; }
-    .timeline-item:nth-child(even) .tl-content   { grid-column: 3; text-align: left; padding-left: 2.5rem; }
-
-    .tl-dot {
-      display: flex;
-      justify-content: center;
-      padding-top: 1.4rem;
-    }
-    .tl-dot-inner {
-      width: 16px; height: 16px;
-      border-radius: 50%;
-      background: var(--white);
-      border: 3px solid var(--cyan);
-      box-shadow: 0 0 12px rgba(0,200,232,0.5);
-      flex-shrink: 0;
-    }
-
-    .tl-card {
-      padding: 1.8rem 2rem;
-      position: relative;
-    }
-
-    .tl-period {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.66rem;
-      letter-spacing: 0.15em;
-      color: var(--cyan-dark);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-
-    .tl-role {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.92rem;
-      color: var(--navy);
-      font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 0.3rem;
-    }
-
-    .tl-company {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      font-weight: 500;
-      margin-bottom: 1rem;
-    }
-
-    .tl-bullets {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .tl-bullets li {
-      font-size: 0.87rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-    }
-
-    .tl-bullets li::before {
-      content: '▸';
-      color: var(--cyan);
-      font-size: 0.75rem;
-      margin-top: 0.2rem;
-      flex-shrink: 0;
-    }
-
-    /* Right-aligned bullet points */
-    .timeline-item:nth-child(odd) .tl-bullets li {
-      flex-direction: row-reverse;
-      text-align: right;
-    }
-    .timeline-item:nth-child(odd) .tl-bullets li::before {
-      content: '◂';
-    }
-
-    /* ---- ACHIEVEMENTS ---- */
-    .achievements-section { background: var(--bg); }
-
-    .achievements-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    .achievement-card {
-      padding: 2rem 1.8rem;
-      text-align: center;
-    }
-
-    .ach-medal {
-      font-size: 2.5rem;
-      display: block;
-      margin-bottom: 0.8rem;
-    }
-
-    .ach-place {
-      display: inline-block;
-      margin-bottom: 0.75rem;
-    }
-
-    .ach-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.88rem;
-      color: var(--navy);
-      line-height: 1.4;
-      margin-bottom: 0.4rem;
-    }
-
-    .ach-org {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    /* ---- RESPONSIVE ---- */
-    @media (max-width: 768px) {
-      .timeline::before { left: 20px; }
-      .timeline-item {
-        grid-template-columns: 40px 1fr;
-      }
-      .timeline-item:nth-child(odd) .tl-content,
-      .timeline-item:nth-child(even) .tl-content {
-        grid-column: 2;
-        text-align: left;
-        padding-left: 1.5rem;
-        padding-right: 0;
-      }
-      .timeline-item:nth-child(odd) .tl-dot,
-      .timeline-item:nth-child(even) .tl-dot {
-        grid-column: 1;
-      }
-      .tl-spacer { display: none; }
-      .timeline-item:nth-child(odd) .tl-bullets li { flex-direction: row; text-align: left; }
-      .timeline-item:nth-child(odd) .tl-bullets li::before { content: '▸'; }
-      .achievements-grid { grid-template-columns: 1fr; }
+    @media(max-width:768px){
+      .timeline::before{left:24px}
+      .tl-item{grid-template-columns:48px 1fr}
+      .tl-center{grid-column:1;padding-top:1.2rem;justify-content:center}
+      .tl-left,.tl-right{padding-left:1.5rem;padding-right:0}
+      .tl-odd .tl-left,.tl-even .tl-left{display:none}
+      .tl-odd .tl-right,.tl-even .tl-right{display:block}
+      .tl-odd .tl-right,.tl-even .tl-right{grid-column:2}
+      .tl-item{display:flex;flex-direction:row;gap:1rem}
+      .ach-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-
-<nav class="nav" id="nav">
-  <a href="index.html" class="nav-logo">HM<span>.</span></a>
-  <ul class="nav-links">
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Hassan<em>.</em></a>
+  <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="experience.html">Experience</a></li>
     <li><a href="skills.html">Skills</a></li>
     <li><a href="contact.html" class="nav-cta">Contact</a></li>
   </ul>
-  <div class="nav-hamburger"><span></span><span></span><span></span></div>
+  <div class="hamburger" id="hbg"><span></span><span></span><span></span></div>
 </nav>
 
-<!-- PAGE HEADER -->
-<section class="page-header">
-  <div class="container">
-    <div class="section-eyebrow">Career</div>
-    <h1>Work Experience</h1>
-    <p style="color:var(--text-muted); max-width:55ch; margin-top:1rem; font-size:1.05rem;">
-      Five years of cross-functional experience spanning ESG compliance, sales leadership,
-      strategic consulting, and sustainable supply chain management.
-    </p>
+<div class="page-hero">
+  <div class="pw">
+    <div class="eyebrow r">Career</div>
+    <h1 class="ph r r1">Work Experience</h1>
+    <p class="ph-sub r r2">Five years of cross-functional experience spanning ESG compliance, sales leadership, strategic consulting, and sustainable supply chain management.</p>
   </div>
-</section>
+</div>
 
-<!-- TIMELINE -->
-<section class="timeline-section">
-  <div class="container">
+<div class="tl-sec">
+  <div class="pw">
     <div class="timeline">
 
-      <!-- 1 -->
-      <div class="timeline-item reveal">
-        <div class="tl-content">
-          <div class="tl-card card">
-            <span class="tl-period">MAR 2025 — DEC 2025</span>
-            <div class="tl-role">Sales Development Rep &amp; Project Lead</div>
-            <div class="tl-company">FinSell Oy (World Vision) · Helsinki, FI</div>
-            <ul class="tl-bullets">
-              <li>Recruited, trained, and managed the outdoor sales team with motivational leadership in a fast-paced environment.</li>
-              <li>Led fundraising campaigns and donor acquisition, achieving targeted growth of the supporter base.</li>
-              <li>Managed CRM and reporting workflows including scheduling through MS Office, Excel, and Google tools.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
-        <div class="tl-spacer"></div>
+      <div class="tl-item tl-odd r">
+        <div class="tl-left"><div class="tl-card">
+          <div class="tc-per">MAR 2025 — DEC 2025</div>
+          <div class="tc-role">Sales Development Rep &amp; Project Lead</div>
+          <div class="tc-company">FinSell Oy (World Vision) · Helsinki, FI</div>
+          <ul class="tc-pts">
+            <li>Recruited, trained &amp; managed outdoor sales team in a fast-paced environment</li>
+            <li>Led fundraising campaigns and donor acquisition with targeted growth results</li>
+            <li>Managed CRM workflows and reporting via MS Office, Excel &amp; Google tools</li>
+          </ul>
+        </div></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-right"></div>
       </div>
 
-      <!-- 2 -->
-      <div class="timeline-item reveal reveal-delay-1">
-        <div class="tl-spacer"></div>
-        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
-        <div class="tl-content">
-          <div class="tl-card card">
-            <span class="tl-period">JUN 2024 — OCT 2024</span>
-            <div class="tl-role">ESG &amp; CSRD Compliance Specialist</div>
-            <div class="tl-company">Tammer Brands Oy · Tampere / Vantaa, FI</div>
-            <ul class="tl-bullets">
-              <li>Implemented EU Carbon Border Adjustment Mechanism (CBAM) and ESG/CSRD compliance goals.</li>
-              <li>Coordinated supplier data with customs (Tulli) for CBAM compliance and reported directly to the EU portal.</li>
-              <li>Led internal CBAM knowledge-sharing sessions and trained suppliers on compliance strategies.</li>
-              <li>Managed risk assessment and Product Quality Book (PQB) evaluations under EU import legislation.</li>
-            </ul>
-          </div>
-        </div>
+      <div class="tl-item tl-even r r1">
+        <div class="tl-left"></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-right"><div class="tl-card">
+          <div class="tc-per">JUN 2024 — OCT 2024</div>
+          <div class="tc-role">ESG &amp; CSRD Compliance Specialist</div>
+          <div class="tc-company">Tammer Brands Oy · Tampere / Vantaa, FI</div>
+          <ul class="tc-pts">
+            <li>Implemented EU Carbon Border Adjustment Mechanism (CBAM) compliance</li>
+            <li>Coordinated supplier data with Tulli, reported directly to EU portal</li>
+            <li>Led internal CBAM training sessions; managed PQB risk assessments</li>
+          </ul>
+        </div></div>
       </div>
 
-      <!-- 3 -->
-      <div class="timeline-item reveal reveal-delay-2">
-        <div class="tl-content">
-          <div class="tl-card card">
-            <span class="tl-period">MAY 2023 — DEC 2024</span>
-            <div class="tl-role">Strategy Consultant</div>
-            <div class="tl-company">Tampere Business Case Club · Tampere, FI</div>
-            <ul class="tl-bullets">
-              <li>Advised regional and international organisations including Lufthansa, Sidoste, and TeamViewer on complex business cases.</li>
-              <li>Conducted in-depth market research, competitor benchmarking, and financial analysis.</li>
-              <li>Represented Tampere University at International Business Case Consulting &amp; European Sales Competitions.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
-        <div class="tl-spacer"></div>
+      <div class="tl-item tl-odd r r2">
+        <div class="tl-left"><div class="tl-card">
+          <div class="tc-per">MAY 2023 — DEC 2024</div>
+          <div class="tc-role">Strategy Consultant</div>
+          <div class="tc-company">Tampere Business Case Club · Tampere, FI</div>
+          <ul class="tc-pts">
+            <li>Advised Lufthansa, TeamViewer, Sidoste on complex business strategy</li>
+            <li>Conducted market research, competitor benchmarking &amp; financial analysis</li>
+            <li>Represented Tampere University at International &amp; European competitions</li>
+          </ul>
+        </div></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-right"></div>
       </div>
 
-      <!-- 4 -->
-      <div class="timeline-item reveal reveal-delay-1">
-        <div class="tl-spacer"></div>
-        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
-        <div class="tl-content">
-          <div class="tl-card card">
-            <span class="tl-period">JUN 2020 — MAR 2021</span>
-            <div class="tl-role">Assistant Manager</div>
-            <div class="tl-company">Environmental Consultancies &amp; Options · Lahore, PK</div>
-            <ul class="tl-bullets">
-              <li>Implemented a streamlined supply chain program in Punjab region connecting 2,400 collection centres.</li>
-              <li>Hired, trained, and managed the full waste collection and disposal team, reducing lead time.</li>
-              <li>Managed regulatory documents and licence renewals for handling hazardous chemicals.</li>
-            </ul>
-          </div>
-        </div>
+      <div class="tl-item tl-even r r1">
+        <div class="tl-left"></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-right"><div class="tl-card">
+          <div class="tc-per">JUN 2020 — MAR 2021</div>
+          <div class="tc-role">Assistant Manager</div>
+          <div class="tc-company">Environmental Consultancies &amp; Options · Lahore, PK</div>
+          <ul class="tc-pts">
+            <li>Streamlined supply chain connecting 2,400 collection centres in Punjab</li>
+            <li>Hired, trained &amp; managed full waste collection and disposal team</li>
+            <li>Managed regulatory documents &amp; hazardous chemical licences</li>
+          </ul>
+        </div></div>
       </div>
 
-      <!-- 5 -->
-      <div class="timeline-item reveal reveal-delay-2">
-        <div class="tl-content">
-          <div class="tl-card card">
-            <span class="tl-period">DEC 2017 — JAN 2020</span>
-            <div class="tl-role">Business Development Manager</div>
-            <div class="tl-company">Vapemall PK · Lahore, PK</div>
-            <ul class="tl-bullets">
-              <li>Scaled the business from an online-only store to a successful brick-and-mortar operation across multiple locations.</li>
-              <li>Managed end-to-end supply chain: invoicing, shipment clearance, inventory control, and delivery logistics.</li>
-              <li>Served as financial advisor and strategic sales coordinator for business growth.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
-        <div class="tl-spacer"></div>
+      <div class="tl-item tl-odd r r2">
+        <div class="tl-left"><div class="tl-card">
+          <div class="tc-per">DEC 2017 — JAN 2020</div>
+          <div class="tc-role">Business Development Manager</div>
+          <div class="tc-company">Vapemall PK · Lahore, PK</div>
+          <ul class="tc-pts">
+            <li>Scaled from online-only to multiple brick-and-mortar locations</li>
+            <li>Managed full supply chain: invoicing, clearance, inventory &amp; logistics</li>
+            <li>Financial advisor and strategic sales coordinator for business growth</li>
+          </ul>
+        </div></div>
+        <div class="tl-center"><div class="tl-dot"></div></div>
+        <div class="tl-right"></div>
       </div>
 
     </div>
   </div>
-</section>
+</div>
 
-<!-- ACHIEVEMENTS -->
-<section class="achievements-section">
-  <div class="container">
-    <div class="section-eyebrow">Recognition</div>
-    <h2 class="section-title">Achievements &amp; Awards</h2>
-
-    <div class="achievements-grid">
-
-      <div class="achievement-card card reveal">
-        <span class="ach-medal">🥉</span>
-        <span class="badge badge-bronze ach-place">3rd Place</span>
-        <div class="ach-title">Huawei Tech Arena Finland 2025</div>
-        <div class="ach-org">Developed UI/UX Interface for Harmony OS · Dec 2025</div>
-      </div>
-
-      <div class="achievement-card card reveal reveal-delay-1">
-        <span class="ach-medal">🥇</span>
-        <span class="badge badge-gold ach-place">1st Place</span>
-        <div class="ach-title">Sales Pitch Competition</div>
-        <div class="ach-org">Platform 6 · Feb 2023</div>
-      </div>
-
-      <div class="achievement-card card reveal reveal-delay-2">
-        <span class="ach-medal">🥇</span>
-        <span class="badge badge-gold ach-place">1st Place</span>
-        <div class="ach-title">Business Startup Competition</div>
-        <div class="ach-org">Tampere University of Applied Sciences · Mar 2022</div>
-      </div>
-
+<div class="ach-sec">
+  <div class="pw">
+    <div class="eyebrow r">Recognition</div>
+    <h2 style="font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:2.5rem" class="r r1">Awards &amp; Achievements</h2>
+    <div class="ach-grid">
+      <div class="ach-card r"><span class="ach-emoji">🥉</span><span class="ach-place bronze">3RD PLACE</span><div class="ach-title">Huawei Tech Arena Finland 2025</div><div class="ach-org">Designed UI/UX Interface for Harmony OS · Dec 2025</div></div>
+      <div class="ach-card r r1"><span class="ach-emoji">🥇</span><span class="ach-place gold">1ST PLACE</span><div class="ach-title">Sales Pitch Competition</div><div class="ach-org">Platform 6 · Feb 2023</div></div>
+      <div class="ach-card r r2"><span class="ach-emoji">🥇</span><span class="ach-place gold">1ST PLACE</span><div class="ach-title">Business Startup Competition</div><div class="ach-org">Tampere University of Applied Sciences · Mar 2022</div></div>
     </div>
   </div>
-</section>
+</div>
 
 <footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-logo">HM<span>.</span></div>
-      <ul class="footer-links">
-        <li><a href="about.html">About</a></li>
-        <li><a href="experience.html">Experience</a></li>
-        <li><a href="skills.html">Skills</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <div class="footer-copy">© 2026 M. Hassan Masood</div>
-    </div>
+  <div class="foot-inner">
+    <a href="index.html" class="foot-logo">Hassan<em>.</em></a>
+    <ul class="foot-links"><li><a href="about.html">About</a></li><li><a href="experience.html">Experience</a></li><li><a href="skills.html">Skills</a></li><li><a href="contact.html">Contact</a></li></ul>
+    <div class="foot-copy">© 2026 M. Hassan Masood</div>
   </div>
 </footer>
-
-<script src="assets/js/main.js"></script>
+<script>
+const nav=document.getElementById('nav');const hbg=document.getElementById('hbg');const nl=document.getElementById('navLinks');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
+if(hbg)hbg.addEventListener('click',()=>nl.classList.toggle('open'));
+const rs=document.querySelectorAll('.r');
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target)}}),{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+rs.forEach(el=>ro.observe(el));
+</script>
 </body>
 </html>
